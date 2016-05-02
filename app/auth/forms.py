@@ -37,26 +37,26 @@ class RegistrationForm(Form):
 
 
 class ChangePasswordForm(Form):
-    old_password = PasswordField('Old password', validators=[Required()])
-    password = PasswordField('New password', validators=[
+    old_password = PasswordField(u'旧密码', validators=[Required()])
+    password = PasswordField(u'新密码', validators=[
         Required(), EqualTo('password2', message='Passwords must match')])
-    password2 = PasswordField('Confirm new password', validators=[Required()])
-    submit = SubmitField('Update Password')
+    password2 = PasswordField(u'确认新密码', validators=[Required()])
+    submit = SubmitField(u'更新密码')
 
 
 class PasswordResetRequestForm(Form):
-    email = StringField('Email', validators=[Required(), Length(1, 64),
+    email = StringField(u'电子邮件', validators=[Required(), Length(1, 64),
                                              Email()])
-    submit = SubmitField('Reset Password')
+    submit = SubmitField(u'重设电子邮件')
 
 
 class PasswordResetForm(Form):
-    email = StringField('Email', validators=[Required(), Length(1, 64),
+    email = StringField(u'电子邮件', validators=[Required(), Length(1, 64),
                                              Email()])
-    password = PasswordField('New Password', validators=[
+    password = PasswordField(u'新密码', validators=[
         Required(), EqualTo('password2', message='Passwords must match')])
-    password2 = PasswordField('Confirm password', validators=[Required()])
-    submit = SubmitField('Reset Password')
+    password2 = PasswordField(u'确认新密码', validators=[Required()])
+    submit = SubmitField(u'重设密码')
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first() is None:
@@ -64,10 +64,10 @@ class PasswordResetForm(Form):
 
 
 class ChangeEmailForm(Form):
-    email = StringField('New Email', validators=[Required(), Length(1, 64),
+    email = StringField(u'新电子邮件', validators=[Required(), Length(1, 64),
                                                  Email()])
-    password = PasswordField('Password', validators=[Required()])
-    submit = SubmitField('Update Email Address')
+    password = PasswordField(u'密码', validators=[Required()])
+    submit = SubmitField(u'更新电子邮件')
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
