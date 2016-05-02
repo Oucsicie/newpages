@@ -39,7 +39,7 @@ class RegistrationForm(Form):
 class ChangePasswordForm(Form):
     old_password = PasswordField(u'旧密码', validators=[Required()])
     password = PasswordField(u'新密码', validators=[
-        Required(), EqualTo('password2', message='Passwords must match')])
+        Required(), EqualTo('password2', message=u'两次密码输入必须相同')])
     password2 = PasswordField(u'确认新密码', validators=[Required()])
     submit = SubmitField(u'更新密码')
 
@@ -60,7 +60,7 @@ class PasswordResetForm(Form):
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first() is None:
-            raise ValidationError('Unknown email address.')
+            raise ValidationError(u'未知的邮件地址.')
 
 
 class ChangeEmailForm(Form):
@@ -71,4 +71,4 @@ class ChangeEmailForm(Form):
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email already registered.')
+            raise ValidationError(u'电子邮件已经存在.')
