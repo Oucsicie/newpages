@@ -47,7 +47,7 @@ class ChangePasswordForm(Form):
 class PasswordResetRequestForm(Form):
     email = StringField(u'电子邮件', validators=[Required(), Length(1, 64),
                                              Email()])
-    submit = SubmitField(u'重设电子邮件')
+    submit = SubmitField(u'提交电子邮件')
 
 
 class PasswordResetForm(Form):
